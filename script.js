@@ -70,7 +70,7 @@ const playMusic = (track, pause = false) => {
 }
 
 async function displayAlbums() {
-    const a = await fetch(`http://127.0.0.1:3000/songs/`)
+    const a = await fetch(`/songs/`)
     const response = await a.text();
     const div = document.createElement("div")
     div.innerHTML = response;
@@ -85,7 +85,7 @@ async function displayAlbums() {
         if (m) {
             const folder = m[1];
             try {
-                const infoResp = await fetch(`http://127.0.0.1:3000/songs/${folder}/info.json`)
+                const infoResp = await fetch(`/songs/${folder}/info.json`)
                 const meta = await infoResp.json();
                 const cover = meta.cover || 'cover.jpeg';
                 cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}" class="card">
