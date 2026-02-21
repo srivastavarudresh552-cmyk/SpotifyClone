@@ -14,22 +14,10 @@ function secondsToMMSS(seconds) {
 }
 async function getSongs(folder) {
     currFolder = folder;
-    const a = await fetch(`/${folder}/`)
-    const response = await a.text();
-    const div = document.createElement("div")
-    div.innerHTML = response;
-    const as = div.getElementsByTagName("a")
-    songs = []
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        const hrefAttr = element.getAttribute('href') || element.href || '';
-        if (!hrefAttr) continue;
-        const decoded = decodeURIComponent(hrefAttr);
-        if (decoded.toLowerCase().endsWith('.mp3')) {
-            const filename = decoded.split('/').pop().split('\\').pop();
-            songs.push(filename);
-        }
-    }
+    const songsResponse = await fetch(`/songs.json`);
+    const songsData = await songsResponse.json();
+    const folderName = folder.split('/').pop();
+    songs = songsData[folderName] || [];
 
 
     //Show all the songs in the playlist
@@ -70,25 +58,17 @@ const playMusic = (track, pause = false) => {
 }
 
 async function displayAlbums() {
-    const a = await fetch(`/songs/`)
-    const response = await a.text();
-    const div = document.createElement("div")
-    div.innerHTML = response;
-    const anchors = div.getElementsByTagName("a")
+    const songsResponse = await fetch(`/songs.json`);
+    const songsData = await songsResponse.json();
+    const folders = Object.keys(songsData);
+    
     const cardContainer = document.querySelector(".cardContainer")
-    const array = Array.from(anchors);
-    for (let index = 0; index < array.length; index++) {
-        const e = array[index];
-        const hrefAttr = e.getAttribute('href') || e.href || '';
-        const decoded = decodeURIComponent(hrefAttr);
-        const m = decoded.match(/songs[\/\\]([^\/\\]+)/i);
-        if (m) {
-            const folder = m[1];
-            try {
-                const infoResp = await fetch(`/songs/${folder}/info.json`)
-                const meta = await infoResp.json();
-                const cover = meta.cover || 'cover.jpeg';
-                cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}" class="card">
+    for (let folder of folders) {
+        try {
+            const infoResp = await fetch(`/songs/${folder}/info.json`)
+            const meta = await infoResp.json();
+            const cover = meta.cover || 'cover.jpeg';
+            cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}" class="card">
                         <div class="play">
                             <svg width="40" height="40" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="100" cy="100" r="100" fill="#1ed760" />
@@ -100,9 +80,8 @@ async function displayAlbums() {
                         <h2>${meta.title || folder}</h2>
                         <p>${meta.description || ''}</p>
                     </div>`
-            } catch (err) {
-                // ignore folders without info.json
-            }
+        } catch (err) {
+            // ignore folders without info.json
         }
     }
 
