@@ -1,0 +1,12 @@
+{
+  "title": "Sunset Pop",
+  "description": "Upbeat pop tracks to brighten your day.(Sample --> NO PLAY)",
+  "artist": "Various Artists",
+  "year": 2023,
+  "cover": "cover.svg",
+  "tracks": [
+    "summer-drive.mp3",
+    "golden-hour.mp3",
+    "neon-dreams.mp3"
+  ]
+}

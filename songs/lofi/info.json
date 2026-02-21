@@ -1,0 +1,12 @@
+{
+  "title": "Late Night Lofi",
+  "description": "A mellow lofi collection for studying and relaxing.(Sample --> NO PLAY)",
+  "artist": "Various Artists",
+  "year": 2021,
+  "cover": "cover.svg",
+  "tracks": [
+    "midnight-waves.mp3",
+    "soft-rain.mp3",
+    "city-lights.mp3"
+  ]
+}
