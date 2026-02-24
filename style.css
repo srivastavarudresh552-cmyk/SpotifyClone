@@ -401,5 +401,14 @@ body {
 @media (max-width: 500px) {
     .spotifyPlaylists .card {
         width: 100vw;
+        height: auto;
     }
+
+    .header>* {
+        padding: 20px;
+    }
+
+    .buttons>* {
+        margin: 0 6px;
+    }                    
 }
