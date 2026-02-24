@@ -139,7 +139,7 @@ body {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 167px;
+    bottom: 130px;
     right: 17px;
     opacity: var(--a);
     transition: all 1s ease-out;
@@ -182,13 +182,16 @@ body {
 
 .playbar {
     position: fixed;
-    bottom: 30px;
+    bottom: 30px;                                     
     filter: invert(1);
     background-color: #dad5d5;
     border-radius: 10px;
     width: 70vw;
     padding: 12px;
     min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hamburger {
@@ -259,7 +262,7 @@ body {
     width: 98%;
     background: black;
     position: absolute;
-    bottom: 0px;
+    bottom: 8px;
     border-radius: 10px;
     margin: 6px;
     cursor: pointer;
@@ -317,17 +320,19 @@ body {
     margin: 20px 0;
 }
 
-
+                                          
 
 @media (max-width: 1200px) {
     .left {
-        position: absolute;
         left: -120%;
         transition: all .3s;
         width: 373px;
         z-index: 1;
         background-color: black;
         padding: 0;
+        height: 100vh;
+        position: fixed;
+        top:0px;
     }
 
     .left .close {
@@ -335,6 +340,7 @@ body {
         right: 31px;
         top: 25px;
         width: 29px;
+         
     }
 
     .right {
@@ -343,6 +349,7 @@ body {
 
     .playbar {
         width: calc(100vw - 60px);
+
     }
 
     .seekbar {
@@ -396,9 +403,11 @@ body {
         flex-direction: column;
         gap: 13px;
     }
+
     .cardContainer {
         max-height: unset;
         overflow-y: unset;
+        margin-bottom: 35vh;
     }
 }
 
@@ -408,15 +417,26 @@ body {
     }
 
     .header>* {
-        padding: 20px;
+        padding: 2px;
     }
 
     .buttons>* {
         margin: 0 6px;
-    }  
-    
+    }
+
+    .header {
+        padding: 7px;
+    }
+
     .cardContainer {
         max-height: unset;
         overflow-y: unset;
+        margin-bottom: 35vh;
+    }
+    .library {
+        height: 100vh;
+    }
+    .left {
+        width: 100vw;
     }
 }
