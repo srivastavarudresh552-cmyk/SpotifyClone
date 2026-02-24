@@ -396,12 +396,15 @@ body {
         flex-direction: column;
         gap: 13px;
     }
+    .cardContainer {
+        max-height: unset;
+        overflow-y: unset;
+    }
 }
 
 @media (max-width: 500px) {
     .spotifyPlaylists .card {
-        width: 100vw;
-        height: auto;
+        width: 100%;
     }
 
     .header>* {
@@ -410,5 +413,10 @@ body {
 
     .buttons>* {
         margin: 0 6px;
-    }                    
+    }  
+    
+    .cardContainer {
+        max-height: unset;
+        overflow-y: unset;
+    }
 }
